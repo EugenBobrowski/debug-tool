@@ -1,0 +1,91 @@
+#wp-debug-bar {
+  @color: #2c5f90;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999999;
+  padding: 15px 15px 15px;
+  background: fade(@color, 80%);
+  color: #ffffff;
+
+
+  .clear {
+    clear: both;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+  p {
+    margin: 0;
+  }
+  .main {
+    float: right;
+    text-align: right;
+  }
+  .filters {
+    ul {
+      padding: 0;
+    }
+    li {
+      list-style: none;
+      display: inline-block;
+      padding: 4px 6px;
+      margin: 0 5px 5px 0;
+      border: 1px solid fade(#ffffff, 40%);
+      border-radius: 14px;
+      font-size: 0.9em;
+    }
+  }
+  .debug-refs {
+    list-style: none;
+    font-size: 0.9em;
+    padding: 0;
+    color: lighten(@color, 50%);
+    li {
+      display: block;
+      float: left;
+      a {
+        color: inherit;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+      & + li {
+        &:before {
+          content: '/';
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+  .refs-content, .bg {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .refs-content {
+    position: fixed;
+    display: none;
+    padding: 120px;
+
+    > div.ref-item {
+      display: none;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #555;
+      padding: 50px;
+      position: relative;
+      max-height: 100%;
+      overflow: auto;
+      box-shadow: 0 0 10px fade(darken(@color, 20%), 60%);
+    }
+  }
+  .bg {
+    position: absolute;
+    background: fade(@color, 20%);
+  }
+}
