@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name: WP-Debug
+Plugin Name: Debug Tool
 Description: Debug only debug
 Author: Eugen Bobrowski
 Git URI: https://github.com/ruhanirabin/wp-optimize
@@ -124,10 +124,11 @@ class Debug
         ?>
         <div id="wp-debug-bar">
             <div class="main">
-                <h3>Debug bar</h3>
-                <p>Implementation time: <?php echo $this->time; ?>s</p>
-                <p>Queries: <?php echo $wpdb->num_queries; ?></p>
+                <h3 class="title">Debug bar</h3>
+                <p class="time"> <span><?php echo number_format($this->time, 3); ?>s</span>Imp. time</p>
+                <p class="queries"> <span><?php echo $wpdb->num_queries; ?></span> Queries</p>
             </div>
+            <div class="details"></div>
             <div class="filters">
                 <ul><?php
                     foreach ($this->data as $filter => $data) {
@@ -138,7 +139,6 @@ class Debug
                 </ul>
 
             </div>
-
             <div class="clear"></div>
             <?php $this->refs = apply_filters('wp_debug_refs', array()); ?>
             <ul class="debug-refs">
