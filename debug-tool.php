@@ -141,7 +141,7 @@ class Debug
             </div>
             <div class="clear"></div>
             <?php $this->refs = apply_filters('wp_debug_refs', array()); ?>
-            <ul class="debug-refs">
+            <ul class="refs">
                 <?php
                 foreach ($this->refs as $ref_key => $ref) {
                     echo '<li><a href="#'.$ref_key.'" >'.$ref['title'].'</a></li>';
@@ -159,6 +159,7 @@ class Debug
                 }
                 ?>
             </div>
+            <a href="#" class="hide-bar">&times;</a>
 
         </div>
 
