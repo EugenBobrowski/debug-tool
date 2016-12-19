@@ -25,9 +25,10 @@ class Debug
     {
         if (!WP_DEBUG) return;
         add_action('plugins_loaded', array($this, 'start'), 1);
+        add_action('wp_print_footer_scripts', array($this, 'stop'), 99);
+
         add_action('wp_enqueue_scripts', array($this, 'assets'), 1);
         add_action('login_enqueue_scripts', array($this, 'assets'), 1);
-        add_action('wp_print_footer_scripts', array($this, 'stop'), 99);
         add_action('wp_print_footer_scripts', array($this, 'debug_bar'), 99);
         add_action('check_segment', array($this, 'check_segment'), 10, 2);
 

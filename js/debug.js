@@ -6,10 +6,12 @@
 
     debug.init = function () {
         debug.bar = $('#wp-debug-bar');
-        $(document).keydown(debug.toggle);
-        debug.$refs_content = debug.bar.find('.refs-content');
-        debug.bar.on('click', '.debug-refs a', debug.get_ref);
+
         debug.bar.on('click', 'a.hide-bar', debug.hide);
+        $(document).keydown(debug.toggle);
+
+        debug.$refs_content = debug.bar.find('.refs-content');
+        debug.bar.on('click', '.refs a', debug.get_ref);
         debug.$refs_content.on('click', '.bg', debug.hide_ref);
     };
 
