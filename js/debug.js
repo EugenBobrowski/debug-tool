@@ -34,6 +34,7 @@
     debug.hide_ref = function (e) {
         e.preventDefault(e);
         var  $this = $(this);
+        debug.$refs_content.find('.ref-item:visible').hide();
         debug.$refs_content.hide();
     };
 
