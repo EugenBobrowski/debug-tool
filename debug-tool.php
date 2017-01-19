@@ -48,27 +48,13 @@ class Debug
 
     public function check_filter($input)
     {
-        global $wp_current_filter, $wpdb;
+        global $wp_current_filter;
 
 
         $current_filter = $wp_current_filter;
         $current_filter = array_pop($current_filter);
 
-        $time = $this->microtime_float();
-
-        $time = (isset($this->data[$current_filter]['time'])) ?
-            number_format(($time - $this->data[$current_filter]['time']) * 1000, 2):
-            $time;
-        $queries = (isset($this->data[$current_filter]['queries'])) ? $wpdb->num_queries - $this->data[$current_filter]['queries'] : $wpdb->num_queries;
-
-        $times = (isset($this->data[$current_filter]['times'])) ? $this->data[$current_filter]['times'] + 0.5 : 0.5;
-
-
-        $this->data[$current_filter] = array(
-            'time' => $time,
-            'queries' => $queries,
-            'times' => $times,
-        );
+        $this->check_segment($current_filter);
 
         return $input;
     }
