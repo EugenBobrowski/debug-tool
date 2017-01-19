@@ -79,6 +79,13 @@ class Debug
 
         $timestamp = $this->microtime_float();
 
+        if ($is_done) {
+            $this->data[$current_filter]['time'] += $timestamp - $this->start;
+            $this->data[$current_filter]['queries'] += $wpdb->num_queries;
+            $this->data[$current_filter]['times']++;
+            return;
+        }
+
         if (empty($this->data[$current_filter]['time_buffer'])) {
             $this->data[$current_filter]['time_buffer'] = $timestamp;
             $this->data[$current_filter]['queries_buffer'] = $wpdb->num_queries;
