@@ -80,22 +80,39 @@ class Debug
 
         $current_filter = $name;
 
-        $time = $this->microtime_float();
+        if (!isset($this->data[$current_filter])) {
+            $this->data[$current_filter] = array(
+                'time' => 0,
+                'time_buffer' => 0,
+                'queries' => 0,
+                'queries_buffer' => 0,
+                'times' => 0,
 
-        $time = (isset($this->data[$current_filter]['time'])) ?
-            number_format(($time - $this->data[$current_filter]['time']) * 1000, 2):
-            $time;
+            );
+        }
 
-        $queries = (isset($this->data[$name]['queries'])) ? $wpdb->num_queries - $this->data[$name]['queries'] : $wpdb->num_queries;
+        $timestamp = $this->microtime_float();
 
-        $times = (isset($this->data[$name]['times'])) ? $this->data[$current_filter]['times'] + 0.5 : 0.5;
+        if (empty($this->data[$current_filter]['time_buffer'])) {
+            $this->data[$current_filter]['time_buffer'] = $timestamp;
+            $this->data[$current_filter]['queries_buffer'] = $wpdb->num_queries;
+        } else {
+            $this->data[$current_filter]['time'] += $timestamp - $this->data[$current_filter]['time_buffer'];
+            $this->data[$current_filter]['queries'] += $wpdb->num_queries - $this->data[$current_filter]['queries_buffer'];
+            $this->data[$current_filter]['times']++;
+
+            $this->data[$current_filter]['time_buffer'] = 0;
+            $this->data[$current_filter]['queries_buffer'] = 0;
+        }
+
+//        $timestamp = (isset($this->data[$current_filter]['time'])) ?
+//            number_format(($timestamp - $this->data[$current_filter]['time']) * 1000, 2):
+//            $timestamp;
 
 
-        $this->data[$current_filter] = array(
-            'time' => $time,
-            'queries' => $queries,
-            'times' => $times,
-        );
+
+
+
 
     }
 
@@ -133,7 +150,7 @@ class Debug
             <div class="filters">
                 <ul><?php
                     foreach ($this->data as $filter => $data) {
-                        echo '<li><strong>' . $filter . ':</strong> ' . $data['time'] . '/' . $data['queries'] . '/' . $data['times'] . '</li>';
+                        echo '<li><strong>' . $filter . ':</strong> ' . number_format($data['time'] * 1000, 2) . '/' . $data['queries'] . '/' . $data['times'] . '</li>';
                     }
 
                     ?>
