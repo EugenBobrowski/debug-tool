@@ -29,7 +29,7 @@ class Debug
 
         add_action('wp_enqueue_scripts', array($this, 'assets'), 1);
         add_action('login_enqueue_scripts', array($this, 'assets'), 1);
-        add_action('wp_print_footer_scripts', array($this, 'debug_bar'), 99);
+        add_action('wp_footer', array($this, 'debug_bar'), 999999);
         add_action('check_segment', array($this, 'check_segment'), 10, 2);
 
 
@@ -73,7 +73,6 @@ class Debug
                 'queries' => 0,
                 'queries_buffer' => 0,
                 'times' => 0,
-
             );
         }
 
@@ -101,10 +100,6 @@ class Debug
 //        $timestamp = (isset($this->data[$current_filter]['time'])) ?
 //            number_format(($timestamp - $this->data[$current_filter]['time']) * 1000, 2):
 //            $timestamp;
-
-
-
-
 
 
     }
@@ -143,6 +138,12 @@ class Debug
             <div class="filters">
                 <ul><?php
                     foreach ($this->data as $filter => $data) {
+                        if (!empty($data['time_buffer'])) {
+                            $data['time'] += $this->stop - $data['time_buffer'];
+                            $data['queries'] += $wpdb->num_queries - $data['queries_buffer'];
+                            $data['times']++;
+                        }
+
                         echo '<li><strong>' . $filter . ':</strong> ' . number_format($data['time'] * 1000, 2) . '/' . $data['queries'] . '/' . $data['times'] . '</li>';
                     }
 
