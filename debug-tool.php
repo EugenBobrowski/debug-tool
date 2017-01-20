@@ -138,15 +138,15 @@ class Debug
             <div class="filters">
                 <ul><?php
                     foreach ($this->data as $filter => $data) {
-                        $end = '';
+                        $asterisk = '';
                         if (!empty($data['time_buffer'])) {
                             $data['time'] += $this->stop - $data['time_buffer'];
                             $data['queries'] += $wpdb->num_queries - $data['queries_buffer'];
                             $data['times']++;
-                            $end = '*';
+                            $asterisk = '*';
                         }
 
-                        echo '<li><strong>' . $filter . ':</strong> ' . number_format($data['time'] * 1000, 2) . '/' . $data['queries'] . '/' . $data['times'] . $end . '</li>';
+                        echo '<li><strong>' . $asterisk . $filter . ':</strong> ' . number_format($data['time'] * 1000, 2) . '/' . $data['queries'] . '/' . $data['times'] . '</li>';
                     }
 
                     ?>
