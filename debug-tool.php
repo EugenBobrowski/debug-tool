@@ -117,8 +117,8 @@ class Debug
 
     public function assets()
     {
-        wp_enqueue_style('wp-debug-bar', plugin_dir_url(__FILE__) . '/css/style.css', array(), 1, 'screen');
-        wp_enqueue_script('wp-debug-bar', plugin_dir_url(__FILE__) . '/js/debug.js', array(), 1, true);
+        wp_enqueue_style('wp-debug-bar', plugin_dir_url(__FILE__) . '/css/style.css', array(), 2, 'screen');
+        wp_enqueue_script('wp-debug-bar', plugin_dir_url(__FILE__) . '/js/debug.js', array(), 2, true);
     }
 
     public function debug_bar()
