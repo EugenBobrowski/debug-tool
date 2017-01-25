@@ -127,12 +127,26 @@ class Debug
 
         global $wpdb;
 
+        $memory = memory_get_usage ( true );
+        $memory_unit = '';
+
+        if ($memory > 1000) {
+            $memory = $memory / 1000;
+            $memory_unit = 'K';
+        }
+        if ($memory > 1000) {
+            $memory = $memory / 1000;
+            $memory_unit = 'M';
+        }
+
+
         ?>
         <div id="wp-debug-bar">
+            <h3 class="title">Debug bar</h3>
             <div class="main">
-                <h3 class="title">Debug bar</h3>
-                <p class="time"> <span><?php echo number_format($this->time, 3); ?>s</span>Imp. time</p>
-                <p class="queries"> <span><?php echo $wpdb->num_queries; ?></span> Queries</p>
+                <p class="time"> <span><?php echo number_format($this->time, 3); ?>s</span>Imp. time   <span class="circle"></span></p>
+                <p class="queries"> <span><?php echo $wpdb->num_queries; ?></span> Queries<span class="circle"></span></p>
+                <p class="memory"> <span><?php echo number_format($memory, 1) . $memory_unit; ?></span> Memory <span class="circle"></span></p>
             </div>
             <div class="details"></div>
             <div class="filters">
