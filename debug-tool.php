@@ -127,7 +127,7 @@ class Debug
 
         global $wpdb;
 
-        $memory = memory_get_usage ( true );
+        $memory = memory_get_usage ( false );
         $memory_unit = '';
 
         if ($memory > 1000) {
@@ -210,5 +210,6 @@ class Debug
 }
 
 require_once 'functions.php';
+require_once 'tools/errors.php';
 
 Debug::get_instance();
