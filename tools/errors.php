@@ -100,8 +100,7 @@ class Debug_Tool_Errors
                         <strong><?php echo $type . ': '; ?></strong>
                         <?php echo str_replace(ABSPATH, '', $error['location']) . ' - ' . strip_tags($error['message']); ?>
                         <br/>
-                        <?php echo $error['stack'];
-                        ?>
+                        <em><?php echo $error['stack']; ?> </em>
                     </li>
                     <?php
                 } ?>
