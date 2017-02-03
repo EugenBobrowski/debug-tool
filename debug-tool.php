@@ -23,13 +23,20 @@ class Debug
 
     private function __construct()
     {
-        if (!WP_DEBUG) return;
-        add_action('plugins_loaded', array($this, 'start'), 1);
+        if (!WP_DEBUG && !current_user_can('manage_options')) return;
+//        add_action('plugins_loaded', array($this, 'start'), 1);
+        $this->start();
         add_action('wp_print_footer_scripts', array($this, 'stop'), 99);
+        add_action('admin_footer', array($this, 'stop'), 99);
 
         add_action('wp_enqueue_scripts', array($this, 'assets'), 1);
+        add_action('admin_enqueue_scripts', array($this, 'assets'), 1);
         add_action('login_enqueue_scripts', array($this, 'assets'), 1);
+
         add_action('wp_footer', array($this, 'debug_bar'), 999999);
+        add_action('login_footer', array($this, 'debug_bar'), 999999);
+        add_action('admin_footer', array($this, 'debug_bar'), 999999);
+
         add_action('check_segment', array($this, 'check_segment'), 10, 2);
 
 
@@ -123,8 +130,6 @@ class Debug
 
     public function debug_bar()
     {
-        wp_enqueue_style('wp-debug-bar', plugin_dir_url(__FILE__) . '/css/style.css', array(), 1, 'screen');
-
         global $wpdb;
 
         $memory = memory_get_usage ( false );
@@ -141,7 +146,7 @@ class Debug
 
 
         ?>
-        <div id="wp-debug-bar">
+        <div id="wp-debug-bar" <?php echo (current_user_can('manage_options') && !WP_DEBUG) ? 'style="display: none;"' : ''; ?>>
             <h3 class="title">Debug bar</h3>
             <div class="main">
                 <p class="time"> <span><?php echo number_format($this->time, 3); ?>s</span>Imp. time   <span class="circle"></span></p>
@@ -212,4 +217,4 @@ class Debug
 require_once 'functions.php';
 require_once 'tools/errors.php';
 
-Debug::get_instance();
+add_action('plugins_loaded', array('Debug', 'get_instance'), 1);
