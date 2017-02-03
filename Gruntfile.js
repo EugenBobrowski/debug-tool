@@ -13,16 +13,16 @@ module.exports = function (grunt) {
             }
         },
         //scp -P22053 simple-review-post.zip dev3:/home/eugen/www/update.dev3.gringo.qix.sx/www/packages/
-        // compress: {
-        //     main: {
-        //         options: {
-        //             archive: 'simple-review-post.zip'
-        //         },
-        //         files: [
-        //             {expand: true, src: ['**', '!node_modules/**', '!simple-review-post.zip'], dest: '/simple-review-post/'}
-        //         ]
-        //     }
-        // },
+        compress: {
+            main: {
+                options: {
+                    archive: 'debug-tool.zip'
+                },
+                files: [
+                    {expand: true, src: ['**', '!node_modules/**', '!debug-tool.zip'], dest: '/debug-tool/'}
+                ]
+            }
+        },
         watch: {
             styles: {
                 files: ['**/*.less'], // which files to watch
