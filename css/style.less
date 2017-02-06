@@ -47,7 +47,7 @@
     //border: 1px solid #ffffff;
     text-transform: uppercase;
     padding: 4px;
-
+    color: #ffffff;
   }
 
   p {
@@ -187,5 +187,40 @@
   .bg {
     position: absolute;
     background: fade(@color, 20%);
+  }
+
+}
+
+.debug-tool-error-list {
+  padding: 0;
+  margin: 0;
+  .debug-tool-error {
+    display: block;
+    list-style-type: none;
+    padding: 15px;
+    margin: 10px;
+    background: #cccccc;
+    border: 1px solid #bbbbbb;
+  }
+  .dt-warning {
+    @color: #ec971f;
+    color: darken(@color, 20%);
+    background: fade(@color, 30%);
+    border-color: @color;
+  }
+  .dt-notice {
+    @color: #31b0d5;
+    color: darken(@color, 20%);
+    background: fade(@color, 30%);
+    border-color: @color;
+
+  }
+  .dt-undefined,
+  .dt-strict,
+  .dt-deprecated {
+    @color: #cccccc;
+    color: darken(@color, 20%);
+    background: fade(@color, 30%);
+    border-color: @color;
   }
 }
