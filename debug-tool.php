@@ -18,7 +18,6 @@ class Debug
     private $time;
     private $data;
     private $refs;
-    private $current_filter;
 
 
     private function __construct()
@@ -49,7 +48,6 @@ class Debug
     public function check_filter($input)
     {
         global $wp_current_filter;
-
 
         $current_filter = $wp_current_filter;
         $current_filter = array_pop($current_filter);
@@ -96,11 +94,6 @@ class Debug
             $this->data[$current_filter]['time_buffer'] = 0;
             $this->data[$current_filter]['queries_buffer'] = 0;
         }
-
-//        $timestamp = (isset($this->data[$current_filter]['time'])) ?
-//            number_format(($timestamp - $this->data[$current_filter]['time']) * 1000, 2):
-//            $timestamp;
-
 
     }
 
