@@ -139,7 +139,7 @@ class Debug
 
 
         ?>
-        <div id="wp-debug-bar" <?php echo (current_user_can('manage_options') && !WP_DEBUG) ? 'style="display: none;"' : ''; ?>>
+        <div id="wp-debug-bar" <?php echo ((current_user_can('manage_options') && !WP_DEBUG) || is_admin()) ? 'style="display: none;"' : ''; ?>>
             <h3 class="title">Debug bar</h3>
             <div class="main">
                 <p class="time"> <span><?php echo number_format($this->time, 3); ?>s</span>Imp. time   <span class="circle"></span></p>
