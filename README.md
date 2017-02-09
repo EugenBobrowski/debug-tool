@@ -8,15 +8,73 @@ Stable Tag: 0.5.1
 License: GPLv2 or later
 
 
-
-Show helpful debug bar at front and admin side.
-  
+Show helpful debug bar at front and admin side. Tool for developers.
 
 ## Description
 
+This is tool that help developers and administrators easier getting information.
+  
+### Features:
+* Implementation time counter
+* Queries counter
+* Memory counter
+* Segment checker
+* References menu 
 
 
-### Features
+**Implementation time counter**
+
+It count the time from plugin loaded action to debug bar. 
+It does not consider processes that implement before and during the plugins are loading.
+  
+**Queries counter**
+
+It count all what is queried via $wpdb object.
+
+**Memory counter**
+
+Returns the amount of memory, in bytes, that's currently being allocated to your PHP script.
+
+**Segment checker**
+
+Also you can check any segment of your code. 
+
+```php
+do_action('check_segment', 'segment_1');
+
+//do somethisng
+
+do_action('check_segment', 'segment_1');
+```
+The code below returns in debug bar new item like this:
+
+> segment_1: 14.14/3/1
+
+The digits there ara time, queries and how many times this code was implemented.
+
+**References menu**
+
+The default one item of this menu is Errors. It shows notices and warnings including case when `WP_DEBUG` is false.
+
+And also you can easy add your item to this menu and print there any var_dump or anything else. 
+ 
+```php
+add_filter('wp_debug_refs', 'my_debug_tool_ref');
+
+function my_debug_tool_ref ($refs) {
+    
+    global $post;
+    
+    $refs['my_ref_id'] = array(
+        'title' => 'My ref',
+        'content' => '<b>My ref</b><br />' . var_export($post, true),
+    );
+    return $refs;
+}
+
+```
+
+
 
 
 ## Installation

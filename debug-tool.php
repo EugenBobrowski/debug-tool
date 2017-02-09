@@ -23,7 +23,7 @@ class Debug
     private function __construct()
     {
         if (!WP_DEBUG && !current_user_can('manage_options')) return;
-//        add_action('plugins_loaded', array($this, 'start'), 1);
+
         $this->start();
         add_action('wp_print_footer_scripts', array($this, 'stop'), 99);
         add_action('admin_footer', array($this, 'stop'), 99);
@@ -166,6 +166,9 @@ class Debug
 
             </div>
             <div class="clear"></div>
+
+            <a href="#" class="hide-bar">&times;</a>
+
             <?php $this->refs = apply_filters('wp_debug_refs', array()); ?>
             <ul class="refs">
                 <?php
@@ -185,7 +188,6 @@ class Debug
                 }
                 ?>
             </div>
-            <a href="#" class="hide-bar">&times;</a>
 
         </div>
 
@@ -207,7 +209,6 @@ class Debug
     }
 }
 
-require_once 'functions.php';
 require_once 'tools/errors.php';
 
 add_action('plugins_loaded', array('Debug', 'get_instance'), 1);
