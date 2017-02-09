@@ -1,15 +1,18 @@
 #wp-debug-bar {
   @color: #2c5f90;
+  @color-2: #73d098;
+  @color-text: #ffffff;
+  @background: #3b3b3b;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 9999999;
   padding: 15px 30px 15px 15px;
-  background: fade(@color, 80%);
+  background: fade(@background, 90%);
   color: #ffffff;
   font-size: 15px;
-
+  font-family: 'Open Sans', 'Arial', sans-serif;
 
   .hide-bar {
     display: block;
@@ -20,11 +23,12 @@
     height: 15px;
     border-radius: 50%;
     text-align: center;
+    text-decoration: none;
     line-height: 13px;
-    font-family: 'Open Sans', sans-serif;
-    color: #ffffff;
+
+    color: @color-text;
     opacity: 0.8;
-    border: 1px solid fade(#ffffff, 40%);
+    border: 1px solid fade(@color-2, 100%);
     &:hover {
       opacity: 0.9;
     }
@@ -62,7 +66,7 @@
     .time, .queries, .memory {
       position: relative;
       display: block;
-      border: 1px solid lighten(@color, 50%);
+      border: 1px solid lighten(@color-2, 0%);
       padding: 0;
       border-radius: 50%;
       font-size: xx-small;
@@ -131,7 +135,7 @@
       display: inline-block;
       padding: 4px 6px;
       margin: 0 5px 5px 0;
-      border: 1px solid fade(#ffffff, 40%);
+      border: 1px solid @color-2;
       border-radius: 14px;
       font-size: 0.9em;
     }
@@ -140,7 +144,7 @@
     list-style: none;
     font-size: 0.9em;
     padding: 0;
-    color: lighten(@color, 50%);
+    color: @color-text;
     position: absolute;
     bottom: 0;
     left: 15px;
@@ -156,6 +160,7 @@
       & + li {
         &:before {
           content: '/';
+          color: @color-2;
           margin: 0 5px;
         }
       }
