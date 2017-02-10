@@ -14,6 +14,9 @@ Show helpful debug bar at front and admin side. Tool for developers.s
 
 This is tool that help developers and administrators easier getting information.
 
+The debug bar is available on front side for everyone if WP_DEBUG is true. If you are admin you can call bar on any page by keys Ctrl+Alt+Shift+D.
+
+
 = Features: =
 
 * Implementation time counter
@@ -85,11 +88,8 @@ Debug Tool is easy to install and configure.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Page with debug bar
+2. Error modal
 
 == Changelog ==
 
