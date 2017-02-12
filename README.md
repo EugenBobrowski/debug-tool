@@ -54,7 +54,10 @@ The digits there ara time, queries and how many times this code was implemented.
 
 **References menu**
 
-The default one item of this menu is Errors. It shows notices and warnings including case when `WP_DEBUG` is false.
+This is a menu you can customize and add your own reference item. 
+The default one item of this menu is "Errors" that shows notices and warnings including case when `WP_DEBUG` is false.
+
+If you cant se this menu you are happy because there are no errors to show. ... And you didn't add your own item to this menu. 
 
 And also you can easy add your item to this menu and print there any var_dump or anything else. 
  
