@@ -13,6 +13,10 @@ Show helpful debug bar at front and admin side. Tool for developers.
 ## Description
 
 This is tool that help developers and administrators easier getting information.
+
+The debug bar is available on front side for everyone if WP_DEBUG is true. 
+If you are admin you can call bar on any page by keys Ctrl+Alt+Shift+D.
+
   
 ### Features:
 * Implementation time counter
