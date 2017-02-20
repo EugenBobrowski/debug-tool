@@ -119,6 +119,8 @@ class Debug
     {
         wp_enqueue_style('wp-debug-bar', plugin_dir_url(__FILE__) . '/css/style.css', array(), 2, 'screen');
         wp_enqueue_script('wp-debug-bar', plugin_dir_url(__FILE__) . '/js/debug.js', array(), 2, true);
+
+        do_action('debug_tool_assets');
     }
 
     public function debug_bar()
@@ -191,7 +193,15 @@ class Debug
 
         </div>
 
+        <!-- Debug tool scripts -->
         <?php
+
+        do_action('debug_tool_print_scripts');
+
+        ?>
+        <!-- / Debug tool scripts -->
+        <?php
+
     }
 
     private function microtime_float()

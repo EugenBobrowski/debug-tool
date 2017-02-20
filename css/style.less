@@ -55,7 +55,7 @@
   }
 
   p {
-    margin: 0;
+    margin: 10px 0;
   }
 
   .main {
@@ -188,6 +188,13 @@
       overflow: auto;
       box-shadow: 0 0 10px fade(darken(@color, 20%), 60%);
     }
+
+    a {
+      color: @background;
+      &:hover {
+        color: @color-2;
+      }
+    }
   }
   .bg {
     position: absolute;
@@ -228,4 +235,18 @@
     background: fade(@color, 30%);
     border-color: @color;
   }
+}
+
+.dbt-ref-table {
+  width: 100%;
+  td {
+    border-top: 1px solid #ededed;
+    padding: 6px 10px 6px;
+    font-size: 12px;
+    font-family: 'Open Sans', 'Arial', sans-serif;
+  }
+}
+
+.dbt-ref-actions {
+
 }
