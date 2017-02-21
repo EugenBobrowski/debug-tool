@@ -8,7 +8,7 @@ Git URI: https://github.com/ruhanirabin/wp-optimize
 Version: 1.0
 */
 
-class Debug
+class Debug_Tool
 {
 
     protected static $instance;
@@ -221,4 +221,4 @@ class Debug
 
 require_once 'tools/errors.php';
 
-add_action('plugins_loaded', array('Debug', 'get_instance'), 1);
+add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);
