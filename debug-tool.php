@@ -2,9 +2,9 @@
 
 /*
 Plugin Name: Debug Tool
-Description: Debug only debug
+Description: Show helpful debug bar at front and admin side. Tool for developers.
 Author: Eugen Bobrowski
-Git URI: https://github.com/ruhanirabin/wp-optimize
+Git URI:
 Version: 1.0
 */
 

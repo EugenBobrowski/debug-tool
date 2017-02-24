@@ -1,14 +1,14 @@
-=== Plugin Name ===
+=== Debug Tool ===
 Contributors: eugenbobrowski
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UUWASQ4U7BNUE
-Tags: debug, debugger, developer, queries, wp debug, debug bar
+Tags: debug, debugger, developer, queries, wp debug, debug bar, for developers
 Requires at least: 4.6
 Tested up to: 4.7.2
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Show helpful debug bar at front and admin side. Tool for developers.s
+Show helpful debug bar at front and admin side. Tool for developers.
 
 == Description ==
 
@@ -93,7 +93,7 @@ Debug Tool is easy to install and configure.
 
 == Changelog ==
 
-= 1.1 =
+= 1.0 =
 *Release Date - 15th February, 2017*
 
 * Initial release
