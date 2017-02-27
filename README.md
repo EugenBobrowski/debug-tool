@@ -54,7 +54,9 @@ The code below returns in debug bar new item like this:
 
 > segment_1: 14.14/3/1
 
-The digits there ara time, queries and how many times this code was implemented.
+It means that `segment_1` was implementing 14.14 ms once time. Had 3 requests to database via `$wpdb`. 
+
+The digits there ara mean time, queries and how many times this code was implemented.
 
 **References menu**
 
