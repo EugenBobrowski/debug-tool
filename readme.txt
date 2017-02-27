@@ -42,13 +42,13 @@ Returns the amount of memory, in bytes, that's currently being allocated to your
 
 Also you can check any segment of your code.
 
-```php
+<pre><code>
 do_action('check_segment', 'segment_1');
 
 //do somethisng
 
 do_action('check_segment', 'segment_1');
-```
+</code></pre>
 The code below returns in debug bar new item like this:
 
 > segment_1: 14.14/3/1
@@ -61,8 +61,7 @@ The default one item of this menu is Errors. It shows notices and warnings inclu
 
 And also you can easy add your item to this menu and print there any var_dump or anything else.
 
-```php
-add_filter('wp_debug_refs', 'my_debug_tool_ref');
+<pre><code>add_filter('wp_debug_refs', 'my_debug_tool_ref');
 
 function my_debug_tool_ref ($refs) {
 
@@ -75,7 +74,7 @@ function my_debug_tool_ref ($refs) {
     return $refs;
 }
 
-```
+</code></pre>
 
 
 == Installation ==
