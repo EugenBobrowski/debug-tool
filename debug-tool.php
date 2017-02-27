@@ -41,6 +41,8 @@ class Debug_Tool
 
         $this->data = array();
         add_action('init', array($this, 'add_filters'), 1);
+
+        $this->load_tools();
     }
 
     public function add_filters()
@@ -121,6 +123,10 @@ class Debug_Tool
         wp_enqueue_script('wp-debug-bar', plugin_dir_url(__FILE__) . '/js/debug.js', array(), 2, true);
 
         do_action('debug_tool_assets');
+    }
+
+    public function load_tools() {
+        do_action('load_debug_tools');
     }
 
     public function debug_bar()
