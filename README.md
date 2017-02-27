@@ -108,6 +108,12 @@ DebugTool is easy to install and configure.
 
 ## Changelog
 
-= 1.0 =
+### 1.1
+*Release Date - 27th February, 2017*
+
+* Add queries tab.
+
+### 1.0
+*Release Date - 15th February, 2017*
 
 * Initial release
