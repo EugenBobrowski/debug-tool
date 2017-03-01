@@ -30,8 +30,7 @@ class Debug_Tool_Queries
         $i = 1;
 
         ?>
-        <table id="aaff_notices_table" class="dbt-ref-table" data-page="1" data-full="<?php echo $count; ?>"
-               data-per_page="">
+        <table id="aaff_notices_table" class="dbt-ref-table" >
             <?php foreach ($wpdb->queries as $query) { ?>
                 <tr>
                     <td><?php echo $i; ?></td>
