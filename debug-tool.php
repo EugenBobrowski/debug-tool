@@ -2,10 +2,11 @@
 
 /*
 Plugin Name: Debug Tool
+Plugin URI: https://wordpress.org/plugins/debug-tool/
 Description: Show helpful debug bar at front and admin side. Tool for developers.
 Author: Eugen Bobrowski
-Git URI:
-Version: 1.0
+Git URI: https://github.com/EugenBobrowski/debug-tool
+Version: 1.1
 */
 
 class Debug_Tool
