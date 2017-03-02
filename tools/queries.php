@@ -47,7 +47,11 @@ class Debug_Tool_Queries
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($wpdb->queries as $query) { ?>
+            <?php
+            $queried_time = 0;
+            foreach ($wpdb->queries as $query) {
+                $queried_time += $query[1];
+                ?>
                 <tr>
                     <td><?php echo $i; ?></td>
                     <td>
@@ -71,9 +75,13 @@ class Debug_Tool_Queries
         </script>
 
         <?php
+
+        $queried_time_msg = sprintf(__('<p><strong>Queried time:</strong> %sms</p>', 'dbt'), number_format($queried_time*1000));
+
+
         $refs['queries'] = array(
-            'title' => 'Queries' . ' (' . $wpdb->num_queries . ')',
-            'content' => ob_get_clean(),
+            'title' => sprintf(__('Queries (%d)', 'dbt'), $wpdb->num_queries),
+            'content' => $queried_time_msg . ob_get_clean(),
         );
         return $refs;
     }

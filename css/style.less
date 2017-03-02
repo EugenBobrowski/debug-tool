@@ -263,7 +263,10 @@
 
 .dbt-ref-table {
   width: 100%;
-  td {
+  th {
+    text-align: center;
+  }
+  td, th {
     border-top: 1px solid #ededed;
     padding: 6px 10px 6px;
     font-size: 12px;
@@ -272,7 +275,9 @@
 }
 
 .dbt-ref-table-queries {
-
+  th {
+    cursor: pointer;
+  }
   td {
     &:first-child {
       width: 40px;
