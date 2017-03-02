@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: debug, debugger, developer, queries, wp debug, debug bar, for developers
 Requires at least: 4.6
 Tested up to: 4.7.2
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ The debug bar is available on front side for everyone if WP_DEBUG is true. If yo
 
 * Implementation time counter
 * Queries counter
+* Queries list
 * Memory counter
 * Segment checker
 * References menu
@@ -33,6 +34,12 @@ It does not consider processes that implement before and during the plugins are 
 **Queries counter**
 
 It count all what is queried via $wpdb object.
+
+**Queries list**
+
+It show all what is queried via $wpdb object.
+
+The `SAVEQUERIES` constant must be defined as `true`.
 
 **Memory counter**
 
@@ -92,11 +99,10 @@ Debug Tool is easy to install and configure.
 
 == Changelog ==
 
-
 = 1.1 =
-*Release Date - 27th February, 2017*
+*Release Date - 1st March, 2017*
 
-* Add queries tab.
+* Add queries reference tab
 
 = 1.0 =
 *Release Date - 15th February, 2017*

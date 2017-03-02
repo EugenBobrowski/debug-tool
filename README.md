@@ -21,6 +21,7 @@ If you are admin you can call bar on any page by keys Ctrl+Alt+Shift+D.
 ### Features:
 * Implementation time counter
 * Queries counter
+* Queries list
 * Memory counter
 * Segment checker
 * References menu 
@@ -34,6 +35,12 @@ It does not consider processes that implement before and during the plugins are 
 **Queries counter**
 
 It count all what is queried via $wpdb object.
+
+**Queries list**
+
+It show all what is queried via $wpdb object.
+
+The `SAVEQUERIES` constant must be defined as `true`.
 
 **Memory counter**
 
@@ -109,9 +116,9 @@ DebugTool is easy to install and configure.
 ## Changelog
 
 ### 1.1
-*Release Date - 27th February, 2017*
+*Release Date - 1st March, 2017*
 
-* Add queries tab.
+* Add queries reference tab
 
 ### 1.0
 *Release Date - 15th February, 2017*
