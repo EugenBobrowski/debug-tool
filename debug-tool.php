@@ -8,6 +8,9 @@ Git URI:
 Version: 1.0
 */
 
+define('DBT_VERSION', 1.1);
+define('DBT_ROOT_URI', plugin_dir_url(__FILE__));
+
 class Debug_Tool
 {
 

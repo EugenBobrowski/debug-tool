@@ -201,6 +201,30 @@
     background: fade(@background, 60%);
   }
 
+  code {
+    background: @color-2;
+    max-width: 100%;
+    overflow-x: visible;
+    display: block;
+  }
+
+  pre {
+    margin-bottom: 1em;
+    padding: 5px;
+    padding-bottom: 20px !ie7;
+    max-width: 700px;
+    max-height: 400px;
+    overflow: auto;
+    font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
+    font-size: 13px;
+    background-color: #eff0f1;
+  }
+
+  p {
+    code {
+      display: inline-block;
+    }
+  }
 }
 
 .debug-tool-error-list {
@@ -244,6 +268,22 @@
     padding: 6px 10px 6px;
     font-size: 12px;
     font-family: 'Open Sans', 'Arial', sans-serif;
+  }
+}
+
+.dbt-ref-table-queries {
+
+  td {
+    &:first-child {
+      width: 40px;
+      text-align: center;
+    }
+    &:last-child {
+      width: 50px;
+      text-align: center;
+    }
+
+
   }
 }
 
