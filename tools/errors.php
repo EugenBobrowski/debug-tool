@@ -128,4 +128,3 @@ class Debug_Tool_Errors
 }
 
 add_action('load_debug_tools', array('Debug_Tool_Errors', 'get_instance'));
-//Debug_Tool_Errors::get_instance();

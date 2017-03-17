@@ -96,4 +96,3 @@ class Debug_Tool_Queries
 }
 
 add_action('load_debug_tools', array('Debug_Tool_Queries', 'get_instance'));
-Debug_Tool_Queries::get_instance();
