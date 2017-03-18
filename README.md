@@ -1,10 +1,10 @@
 # Debug Tool - Wordpress
 
 Tags: debug, debugger, developer, query, queries, wp debug, debug bar
-Contributors: misternifty, cdillon27
-Tested up to: 4.7
+Contributors: eugenbobrowski
+Tested up to: 4.7.2
 Requires at least: 3.3
-Stable Tag: 0.5.1
+Stable Tag: 1.2
 License: GPLv2 or later
 
 
@@ -21,7 +21,7 @@ If you are admin you can call bar on any page by keys Ctrl+Alt+Shift+D.
 ### Features:
 * Implementation time counter
 * Queries counter
-* Queries list
+* Queries list (sortable)
 * Memory counter
 * Segment checker
 * References menu 
@@ -114,6 +114,11 @@ DebugTool is easy to install and configure.
 ## Screenshots
 
 ## Changelog
+
+### 1.2
+*Release Date - 18th March, 2017*
+
+* Add sorting to queries table
 
 ### 1.1
 *Release Date - 1st March, 2017*

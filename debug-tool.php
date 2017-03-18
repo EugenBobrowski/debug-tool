@@ -6,10 +6,10 @@ Plugin URI: https://wordpress.org/plugins/debug-tool/
 Description: Show helpful debug bar at front and admin side. Tool for developers.
 Author: Eugen Bobrowski
 Git URI: https://github.com/EugenBobrowski/debug-tool
-Version: 1.1
+Version: 1.2
 */
 
-define('DBT_VERSION', 1.1);
+define('DBT_VERSION', 1.2);
 define('DBT_ROOT_URI', plugin_dir_url(__FILE__));
 
 class Debug_Tool
@@ -123,8 +123,8 @@ class Debug_Tool
 
     public function assets()
     {
-        wp_enqueue_style('wp-debug-bar', plugin_dir_url(__FILE__) . '/css/style.css', array(), 2, 'screen');
-        wp_enqueue_script('wp-debug-bar', plugin_dir_url(__FILE__) . '/js/debug.js', array(), 2, true);
+        wp_enqueue_style('wp-debug-bar', plugin_dir_url(__FILE__) . '/css/style.css', array(), DBT_VERSION, 'screen');
+        wp_enqueue_script('wp-debug-bar', plugin_dir_url(__FILE__) . '/js/debug.js', array(), DBT_VERSION, true);
 
         do_action('debug_tool_assets');
     }

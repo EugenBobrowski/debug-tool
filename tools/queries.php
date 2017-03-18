@@ -23,8 +23,7 @@ class Debug_Tool_Queries
     }
 
     public function assets (){
-        wp_enqueue_script('jquery');
-        wp_enqueue_script('jquery-tablesorter', DBT_ROOT_URI . 'js/jquery.tablesorter.min.js');
+        wp_enqueue_script('jquery-tablesorter', DBT_ROOT_URI . 'js/jquery.tablesorter.min.js', array('jquery'), DBT_VERSION);
     }
 
     public function add_ref($refs)
@@ -33,9 +32,6 @@ class Debug_Tool_Queries
         global $wpdb;
 
         $i = 1;
-
-        wp_enqueue_script('jquery');
-        wp_enqueue_script('jquery-tablesorter', plugin_dir_url(__FILE__) . '../js/jquery.tablesorter.min.js');
 
         ?>
         <table id="dbt_queries_table" class="dbt-ref-table dbt-ref-table-queries" >

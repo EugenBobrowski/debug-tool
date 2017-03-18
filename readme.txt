@@ -2,9 +2,9 @@
 Contributors: eugenbobrowski
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UUWASQ4U7BNUE
 Tags: debug, debugger, developer, queries, wp debug, debug bar, for developers
-Requires at least: 4.6
-Tested up to: 4.7.2
-Stable tag: 1.1
+Requires at least: 4.0
+Tested up to: 4.7.3
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,7 +21,7 @@ The debug bar is available on front side for everyone if WP_DEBUG is true. If yo
 
 * Implementation time counter
 * Queries counter
-* Queries list
+* Queries list (sortable)
 * Memory counter
 * Segment checker
 * References menu
@@ -96,8 +96,14 @@ Debug Tool is easy to install and configure.
 
 1. Page with debug bar
 2. Error modal
+3. Queries modal
 
 == Changelog ==
+
+= 1.2 =
+*Release Date - 18th March, 2017*
+
+* Add sorting to queries table
 
 = 1.1 =
 *Release Date - 1st March, 2017*
