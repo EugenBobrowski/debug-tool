@@ -231,5 +231,6 @@ class Debug_Tool
 
 require_once 'tools/errors.php';
 require_once 'tools/queries.php';
+require_once 'tools/wp-cache.php';
 
 add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);
