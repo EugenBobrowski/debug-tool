@@ -20,7 +20,7 @@ class Debug_Tool_Page_Stat
     function ref($refs, $data, $totals)
     {
 
-        $stat = get_option('pages_stat', array());
+        $stat = get_option('dbt_pages_stat', array());
 
         $page = $this->get_page();
 
@@ -30,12 +30,21 @@ class Debug_Tool_Page_Stat
         <h3>Page Stat</h3>
 
         <p>
-            <?php if (array_key_exists($page, $stat)) { ?>
+            <?php if (array_key_exists($page, $stat)) {
+                $stat[$page][time()] = $totals;
+                $page_stat = $stat[$page];
+                ?>
                 <a href="#">Remove this page</a> |
                 <a href="#">Add notice</a>
-            <?php } else { ?>
-                <a href="#add-page-to-stat" data-page="<?php echo esc_attr($page); ?>">Add this page</a>
+            <?php } else {
+                $page_stat = array();
+                ?>
+                <a href="#add-page-to-stat" data-do="add-page" data-page="<?php echo esc_attr($page); ?>" class="dbt-page-stat">Add this page</a>
             <?php } ?>
+        </p>
+
+        <p>
+            <?php var_dump($page_stat); ?>
         </p>
 
 
@@ -53,7 +62,21 @@ class Debug_Tool_Page_Stat
         return $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     }
     public function ajax() {
+        check_ajax_referer('dbt_page_stat');
+
+        $do = $_POST['do'];
+        $page = trim($_POST['page']);
+
+        switch ($_POST['do']) {
+            case 'add-page':
+                $stat = get_option('dbt_pages_stat', array());
+                if (!isset($stat[$page])) $stat[$page] = array();
+                update_option('dbt_pages_stat', $stat);
+                break;
+        }
+
         var_dump($_POST);
+
         exit;
     }
 
@@ -69,12 +92,14 @@ class Debug_Tool_Page_Stat
                 };
 
                 $(document).ready(function () {
-                    $('body').on('click', '[href="#add-page-to-stat"]', function (e) {
+                    $('body').on('click', '.dbt-page-stat', function (e) {
                         e.preventDefault();
                         var $this = $(this);
 
                         $.post(ajax.url, {
                             action: ajax.action,
+                            _wpnonce: ajax.nonce,
+                            do: $this.data('do'),
                             page: $this.data('page')
                         }, function (response) {
                             console.log(response);
