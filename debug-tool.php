@@ -181,7 +181,12 @@ class Debug_Tool
 
             <a href="#" class="hide-bar">&times;</a>
 
-            <?php $this->refs = apply_filters('wp_debug_refs', array()); ?>
+            <?php $this->refs = apply_filters('wp_debug_refs', array(), $this->data, array(
+                    'time' => $this->time,
+                    'queries' => $wpdb->num_queries,
+                    'memory' => $memory,
+                    'memory_unit' => $memory_unit,
+            )); ?>
             <ul class="refs">
                 <?php
                 foreach ($this->refs as $ref_key => $ref) {
@@ -232,5 +237,6 @@ class Debug_Tool
 require_once 'tools/errors.php';
 require_once 'tools/queries.php';
 require_once 'tools/wp-cache.php';
+require_once 'tools/page-stat.php';
 
 add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);
