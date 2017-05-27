@@ -22,7 +22,7 @@ class Debug_Tool_Page_Stat
 
         $stat = get_option('dbt_pages_stat', array());
 
-        $page = $this->get_page();
+        $current_page = $this->get_page();
 
         ob_start();
 
@@ -30,24 +30,52 @@ class Debug_Tool_Page_Stat
         <h3>Page Stat</h3>
 
         <p>
-            <?php if (array_key_exists($page, $stat)) {
-                $stat[$page][time()] = $totals;
-                $page_stat = $stat[$page];
+            <?php if (array_key_exists($current_page, $stat)) {
+                $stat[$current_page][time()] = $totals;
+                $current_page_stat = $stat[$current_page];
+                update_option('dbt_pages_stat', $stat);
                 ?>
-                <a href="#">Remove this page</a> |
-                <a href="#">Add notice</a>
+                <a href="#clear-stat" data-do="clear-page-stat" data-page="<?php echo esc_attr($current_page); ?>"
+                   class="dbt-page-stat">Clear page stat</a> |
+                <a href="#remove-page" data-do="remove-page" data-page="<?php echo esc_attr($current_page); ?>"
+                   class="dbt-page-stat">Remove this page</a>
+
             <?php } else {
-                $page_stat = array();
+                $current_page_stat = array();
                 ?>
-                <a href="#add-page-to-stat" data-do="add-page" data-page="<?php echo esc_attr($page); ?>" class="dbt-page-stat">Add this page</a>
+                <a href="#add-page-to-stat" data-do="add-page" data-page="<?php echo esc_attr($current_page); ?>"
+                   class="dbt-page-stat">Add this page</a>
             <?php } ?>
         </p>
 
-        <p>
-            <?php var_dump($page_stat); ?>
-        </p>
+        <table class="dbt-ref-table">
+            <thead>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Queries</th>
+            <th>Memory</th>
+            </thead>
+            <tbody>
+            <?php foreach ($current_page_stat as $timestamp => $timestat) { ?>
+                <tr data-timestamp="<?php echo $timestamp; ?>">
+                    <td><?php echo date("Y-m-d H:i:s", $timestamp); ?></td>
+                    <td><?php echo number_format($timestat['time'], 2); ?></td>
+                    <td><?php echo $timestat['queries']; ?></td>
+                    <td><?php echo number_format($timestat['memory'], 2) . $timestat['memory_unit']; ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
 
+        <h4>
+            <?php _e('Monitored pages', 'dbt'); ?>
+        </h4>
 
+        <ul>
+            <?php foreach ($stat as $page => $page_stat): ?>
+                <li><a href="<?php echo '//' . $page; ?>"><?php echo $page; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
 
         <?php
 
@@ -58,29 +86,41 @@ class Debug_Tool_Page_Stat
         return $refs;
     }
 
-    private function get_page() {
+    private function get_page()
+    {
         return $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     }
-    public function ajax() {
+
+    public function ajax()
+    {
         check_ajax_referer('dbt_page_stat');
 
-        $do = $_POST['do'];
+        $do = trim($_POST['do']);
         $page = trim($_POST['page']);
 
-        switch ($_POST['do']) {
+        switch ($do) {
             case 'add-page':
                 $stat = get_option('dbt_pages_stat', array());
                 if (!isset($stat[$page])) $stat[$page] = array();
                 update_option('dbt_pages_stat', $stat);
                 break;
+            case 'remove-page':
+                $stat = get_option('dbt_pages_stat', array());
+                if (isset($stat[$page])) unset($stat[$page]);
+                update_option('dbt_pages_stat', $stat);
+                break;
+            case 'clear-page-stat':
+                $stat = get_option('dbt_pages_stat', array());
+                if (isset($stat[$page])) $stat[$page] = array();
+                update_option('dbt_pages_stat', $stat);
+                break;
         }
-
-        var_dump($_POST);
 
         exit;
     }
 
-    public function js () {
+    public function js()
+    {
         ?>
         <script>
 
