@@ -64,8 +64,11 @@ class Debug_Tool_Queries
         <script>
             (function ($) {
                 $(document).ready(function () {
-                    console.log($("#dbt_queries_table"));
-                    $("#dbt_queries_table").tablesorter();
+                    if (typeof $.tablesorter !== 'function') {
+                        console.log('Second another jQuery object was defined or tablesorter plugin is missed');
+                    } else {
+                        $("#dbt_queries_table").tablesorter();
+                    }
                 });
             })(jQuery)
         </script>
