@@ -14,7 +14,7 @@ Show helpful debug bar at front and admin side. Tool for developers.
 
 This is tool that help developers and administrators easier getting information.
 
-The debug bar is available on front side for everyone if WP_DEBUG is true. If you are admin you can call bar on any page by keys Ctrl+Alt+Shift+D.
+The debug bar is available on front side for everyone if WP_DEBUG is true. If you are admin you can call bar on any page by keys Ctrl+Alt+D.
 
 
 = Features: =
@@ -99,6 +99,14 @@ Debug Tool is easy to install and configure.
 3. Queries modal
 
 == Changelog ==
+
+= 2.0 =
+*Release Date - 18th March, 2017*
+
+* Add page stat feature
+* Set new key combination to Ctrl+Alt+D
+* Add Cron & Actions panel
+* Fix bug with Queries list
 
 = 1.2 =
 *Release Date - 18th March, 2017*
