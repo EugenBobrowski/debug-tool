@@ -22,6 +22,7 @@ class Debug_Tool
     private $time;
     private $data;
     private $refs;
+    private $settings;
 
 
     private function __construct()
@@ -41,6 +42,8 @@ class Debug_Tool
         add_action('admin_footer', array($this, 'debug_bar'), 999999);
 
         add_action('check_segment', array($this, 'check_segment'), 10, 2);
+
+        add_action('wp_ajax_dbt_save_setting', array($this, 'save_setting'));
 
 
         $this->data = array();
@@ -123,14 +126,39 @@ class Debug_Tool
 
     public function assets()
     {
-        wp_enqueue_style('wp-debug-bar', plugin_dir_url(__FILE__) . '/css/style.css', array(), DBT_VERSION, 'screen');
-        wp_enqueue_script('wp-debug-bar', plugin_dir_url(__FILE__) . '/js/debug.js', array(), DBT_VERSION, true);
-
+        wp_enqueue_style('wp-dbt', plugin_dir_url(__FILE__) . 'css/style.css', array(), DBT_VERSION, 'screen');
+        wp_enqueue_script('wp-dbt', plugin_dir_url(__FILE__) . 'js/debug.js', array(), DBT_VERSION, true);
+        wp_localize_script('wp-dbt', 'dbt_object', array(
+                'ajax_url' => admin_url('admin-ajax.php'
+                )));
         do_action('debug_tool_assets');
     }
 
     public function load_tools() {
         do_action('load_debug_tools');
+    }
+
+    public function get_settings () {
+
+        $this->settings = apply_filters('dbt_settings', array());
+
+        $option = get_option('dbt_settings', array());
+        foreach ($option as $key=>$value) {
+            $this->settings[$key]['value'] = $value;
+        }
+
+    }
+
+    public function save_setting() {
+
+	    $option = get_option('dbt_settings', array());
+
+	    $this->get_settings();
+
+	    $option[$_POST['name']] = $_POST['value'];
+
+	    update_option('dbt_settings', $option, true);
+        var_dump($_POST);
     }
 
     public function debug_bar()
@@ -149,6 +177,7 @@ class Debug_Tool
             $memory_unit = 'M';
         }
 
+        $this->get_settings();
 
         ?>
         <div id="wp-debug-bar" <?php echo ((current_user_can('manage_options') && !WP_DEBUG) || is_admin()) ? 'style="display: none;"' : ''; ?>>
@@ -180,13 +209,14 @@ class Debug_Tool
             <div class="clear"></div>
 
             <a href="#" class="hide-bar">&times;</a>
+            <a href="#dbt-settings" class="settings"></a>
 
             <?php $this->refs = apply_filters('wp_debug_refs', array(), $this->data, array(
                     'time' => $this->time,
                     'queries' => $wpdb->num_queries,
                     'memory' => $memory,
                     'memory_unit' => $memory_unit,
-            )); ?>
+            ), $this->settings); ?>
             <ul class="refs">
                 <?php
                 foreach ($this->refs as $ref_key => $ref) {
@@ -204,6 +234,20 @@ class Debug_Tool
                     echo '<div id="'.$ref_key.'" class="ref-item">'.$ref['content'].'</div>';
                 }
                 ?>
+                <div id="dbt-settings" class="ref-item">
+                    <h3><?php _e('Debug Tool Settings'); ?></h3>
+                    <form action="#">
+                        <?php foreach ($this->settings as $setting=>$setting_details) { ?>
+                            <div class="setting-item">
+                                <label for="<?php echo $setting; ?>"><?php echo $setting_details['label']; ?></label>
+                                <input id="<?php echo $setting; ?>" type="checkbox" value="1" <?php checked($setting_details['value']); ?> >
+                                <label class="tumbler" for="<?php echo $setting; ?>">
+                                </label>
+                                <div style="clear: both;"></div>
+                            </div>
+                        <?php } ?>
+                    </form>
+                </div>
             </div>
 
         </div>
@@ -238,5 +282,6 @@ require_once 'tools/errors.php';
 require_once 'tools/queries.php';
 require_once 'tools/wp-cache.php';
 require_once 'tools/page-stat.php';
+require_once 'tools/cron-jobs.php';
 
 add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);

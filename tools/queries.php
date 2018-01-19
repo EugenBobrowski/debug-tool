@@ -23,7 +23,7 @@ class Debug_Tool_Queries
     }
 
     public function assets (){
-        wp_enqueue_script('jquery-tablesorter', DBT_ROOT_URI . 'js/jquery.tablesorter.min.js', array('jquery'), DBT_VERSION);
+        wp_enqueue_script('jquery-tablesorter', DBT_ROOT_URI . 'js/jquery.tablesorter.min.js', array('jquery'), DBT_VERSION, false);
     }
 
     public function add_ref($refs)

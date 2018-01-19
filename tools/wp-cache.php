@@ -12,12 +12,21 @@ class Debug_Tool_WP_Cache_Stat
 
     private function __construct()
     {
-        add_filter('wp_debug_refs', array($this, 'ref'), 11);
+        add_filter('wp_debug_refs', array($this, 'ref'), 11, 4);
+        add_filter('dbt_settings', array($this, 'add_setting'));
     }
 
-    function ref($refs)
-    {
+    public function add_setting ($settings) {
+    	$settings ['show_wp_cache_stat'] = array(
+    		'label' => 'Show WP_CACHE stat',
+		    'value' => true,
+	    );
+    	return $settings;
+    }
 
+    function ref($refs, $a, $b, $settings)
+    {
+		if (!$settings['show_wp_cache_stat']['value']) return $refs;
         global $wp_object_cache;
 
         ob_start();
