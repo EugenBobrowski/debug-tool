@@ -49,7 +49,9 @@ class Debug_Tool
         $this->data = array();
         add_action('init', array($this, 'add_filters'), 1);
 
-        $this->load_tools();
+	    do_action('load_debug_tools');
+
+
     }
 
     public function add_filters()
@@ -132,10 +134,6 @@ class Debug_Tool
                 'ajax_url' => admin_url('admin-ajax.php'
                 )));
         do_action('debug_tool_assets');
-    }
-
-    public function load_tools() {
-        do_action('load_debug_tools');
     }
 
     public function get_settings () {
@@ -283,5 +281,6 @@ require_once 'tools/queries.php';
 require_once 'tools/wp-cache.php';
 require_once 'tools/page-stat.php';
 require_once 'tools/cron-jobs.php';
+require_once 'tools/actions.php';
 
 add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);

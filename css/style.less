@@ -387,5 +387,25 @@
 }
 
 .dbt-ref-actions {
+  td  {
+    vertical-align: top;
+    text-align: left;
 
+    &.priority {
+      width: 40px;
+      text-align: center;
+    }
+    & > .dbt-ref-table {
+      margin: 0;
+      tr:first-child {
+        td {
+          border-top: none;
+        }
+      }
+    }
+
+    li {
+      margin: 0 0 5px 0;
+    }
+  }
 }
