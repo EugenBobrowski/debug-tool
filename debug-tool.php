@@ -187,7 +187,7 @@ class Debug_Tool
                 <p class="memory"> <span><?php echo number_format($memory, 1) . $memory_unit; ?></span> Memory <span class="circle"></span></p>
             </div>
             <div class="details"></div>
-            <div class="filters">
+            <div class="dbt-filters">
                 <ul><?php
                     foreach ($this->data as $filter => $data) {
                         $asterisk = '';
