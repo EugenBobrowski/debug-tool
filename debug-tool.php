@@ -177,9 +177,13 @@ class Debug_Tool
 
         $this->get_settings();
 
+        if (isset ($_COOKIE['dbt_visible'])) $visible = $_COOKIE['dbt_visible'];
+        else $visible = (current_user_can('manage_options') && !WP_DEBUG) || is_admin();
+
         ?>
         <div id="dbt-container">
-        <div id="dbt-bar" class="<?php echo ((current_user_can('manage_options') && !WP_DEBUG) || is_admin()) ? 'dbt-hidden"' : ''; ?>">
+        <div id="dbt-bar" class="<?php echo (!$visible) ? 'dbt-hidden"' : ''; ?>">
+
             <h3 class="title">Debug bar</h3>
             <div class="main">
                 <p class="time"> <span><?php echo number_format($this->time, 3); ?>s</span>Imp. time   <span class="circle"></span></p>

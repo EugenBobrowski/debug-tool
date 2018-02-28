@@ -17,8 +17,11 @@
 
     debug.toggle = function (e) {
         e.preventDefault();
-        console.log('asdf');
+        var visible = debug.bar.hasClass('dbt-hidden');
+        console.log("dbt_visible=" + ((visible) ? 1 : 0));
+        document.cookie = "dbt_visible=" + ((visible) ? 1 : 0);
         debug.bar.toggleClass('dbt-hidden');
+
     };
 
     debug.get_ref = function (e) {
