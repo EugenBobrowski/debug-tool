@@ -97,7 +97,7 @@ function my_debug_tool_ref ($refs) {
 
 DebugTool is easy to install and configure.
 
-1. Upload the `easyazon` directory to the `/wp-content/plugins/` directory
+1. Upload the `debug-tool` directory to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Set WP_DEBUG constant if you want to see the bar at front side when you are logged out.
 
