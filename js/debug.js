@@ -18,8 +18,7 @@
     debug.toggle = function (e) {
         e.preventDefault();
         var visible = debug.bar.hasClass('dbt-hidden');
-        console.log("dbt_visible=" + ((visible) ? 1 : 0));
-        document.cookie = "dbt_visible=" + ((visible) ? 1 : 0);
+        document.cookie = "dbt_visible=" + ((visible) ? 1 : 0 + '; path=/');
         debug.bar.toggleClass('dbt-hidden');
 
     };
