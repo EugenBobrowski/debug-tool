@@ -5,10 +5,9 @@
     var debug = dbt_object;
 
     debug.init = function () {
-        debug.bar = $('#wp-debug-bar');
+        debug.bar = $('#dbt-bar');
 
-        debug.bar.on('click', 'a.hide-bar', debug.hide);
-        $(document).keydown(debug.toggle);
+        debug.bar.on('click', 'a.dbt-toggle', debug.toggle);
 
         debug.$refs_content = debug.bar.find('.refs-content');
         debug.bar.on('click', '.refs a, .settings', debug.get_ref);
@@ -17,12 +16,9 @@
     };
 
     debug.toggle = function (e) {
-        console.log(e);
-        if (e.keyCode === 68 && e.altKey && e.ctrlKey) debug.bar.toggle();
-    };
-    debug.hide = function (e) {
         e.preventDefault();
-        debug.bar.hide();
+        console.log('asdf');
+        debug.bar.toggleClass('dbt-hidden');
     };
 
     debug.get_ref = function (e) {

@@ -178,7 +178,8 @@ class Debug_Tool
         $this->get_settings();
 
         ?>
-        <div id="wp-debug-bar" <?php echo ((current_user_can('manage_options') && !WP_DEBUG) || is_admin()) ? 'style="display: none;"' : ''; ?>>
+        <div id="dbt-container">
+        <div id="dbt-bar" class="<?php echo ((current_user_can('manage_options') && !WP_DEBUG) || is_admin()) ? 'dbt-hidden"' : ''; ?>">
             <h3 class="title">Debug bar</h3>
             <div class="main">
                 <p class="time"> <span><?php echo number_format($this->time, 3); ?>s</span>Imp. time   <span class="circle"></span></p>
@@ -206,7 +207,7 @@ class Debug_Tool
             </div>
             <div class="clear"></div>
 
-            <a href="#" class="hide-bar">&times;</a>
+            <a href="#" class="dbt-toggle"></a>
             <a href="#dbt-settings" class="settings"></a>
 
             <?php $this->refs = apply_filters('wp_debug_refs', array(), $this->data, array(
@@ -248,6 +249,7 @@ class Debug_Tool
                 </div>
             </div>
 
+        </div>
         </div>
 
         <!-- Debug tool scripts -->

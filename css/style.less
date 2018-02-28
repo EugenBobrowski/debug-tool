@@ -3,20 +3,21 @@
 @color-text: #ffffff;
 @background: #3b3b3b;
 
-#wp-debug-bar {
-
+#dbt-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  top: auto;
   z-index: 9999999;
   padding: 15px 30px 15px 15px;
   background: fade(@background, 90%);
   color: #ffffff;
   font-size: 15px;
   font-family: 'Open Sans', 'Arial', sans-serif;
+  transition: all .2s ease-out;
 
-  .hide-bar {
+  .dbt-toggle {
     display: block;
     position: absolute;
     top: 10px;
@@ -27,14 +28,62 @@
     text-align: center;
     text-decoration: none;
     line-height: 13px;
-
     color: @color-text;
     opacity: 0.8;
     border: 1px solid fade(@color-2, 100%);
+    transition: all .2s ease-out;
+    &, &:active, &:hover, &:visited, &:focus {
+      outline: none;
+      box-shadow: none;
+    }
     &:hover {
       opacity: 0.9;
     }
+    &:before {
+      content: "\00d7";
+      opacity: 1;
+    }
+    &:after {
+      background: data-uri("images/debug-bug-icon.png") center center no-repeat;
+      background-size: 80% 80%;
+      content: '';
+      opacity: 0;
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
   }
+
+  &.dbt-hidden {
+    transition: all .2s ease-out;
+    transform: translateY(100%);
+
+    .dbt-toggle {
+      top: -22px;
+      right: 1px;
+      width: 18px;
+      height: 18px;
+      transition: all .2s ease-out;
+      background: fade(@background, 90%);
+      opacity: 0;
+      &:hover {
+        opacity: 0.9;
+      }
+      &:before {
+        opacity: 0;
+      }
+      &:after {
+        opacity: 1;
+      }
+    }
+
+  }
+
+
   .settings {
     display: block;
     position: absolute;
