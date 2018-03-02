@@ -18,14 +18,14 @@
     debug.toggle = function (e) {
         e.preventDefault();
         var visible = debug.bar.hasClass('dbt-hidden');
-        document.cookie = "dbt_visible=" + ((visible) ? 1 : 0 + '; path=/');
+        document.cookie = "dbt_visible=" + ((visible) ? 1 : 0) + "; path=/";
         debug.bar.toggleClass('dbt-hidden');
 
     };
 
     debug.get_ref = function (e) {
         e.preventDefault();
-        var  $this = $(this);
+        var $this = $(this);
 
         debug.$refs_content.show();
         debug.$refs_content.find($this.attr('href')).show();
@@ -33,7 +33,7 @@
 
     debug.hide_ref = function (e) {
         e.preventDefault(e);
-        var  $this = $(this);
+        var $this = $(this);
         debug.$refs_content.find('.ref-item:visible').hide();
         debug.$refs_content.hide();
     };
@@ -42,7 +42,7 @@
         e.preventDefault();
         var $this = $(this), val = 0;
 
-        if ($this.attr('type') === 'checkbox' ) {
+        if ($this.attr('type') === 'checkbox') {
             val = ($this.prop('checked')) ? 1 : 0;
         }
 

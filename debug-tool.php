@@ -1,5 +1,4 @@
 <?php
-
 /*
 Plugin Name: Debug Tool
 Plugin URI: https://wordpress.org/plugins/debug-tool/
@@ -9,7 +8,7 @@ Git URI: https://github.com/EugenBobrowski/debug-tool
 Version: 1.2
 */
 
-define('DBT_VERSION', 1.2);
+define('DBT_VERSION', '2.0');
 define('DBT_ROOT_URI', plugin_dir_url(__FILE__));
 
 class Debug_Tool
@@ -179,6 +178,8 @@ class Debug_Tool
 
         if (isset ($_COOKIE['dbt_visible'])) $visible = $_COOKIE['dbt_visible'];
         else $visible = (current_user_can('manage_options') && !WP_DEBUG) || is_admin();
+
+
 
         ?>
         <div id="dbt-container">
