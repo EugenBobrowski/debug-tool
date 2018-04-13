@@ -61,11 +61,10 @@ class Debug_Tool_Errors
     {
         if (count($this->errors)) {
             ob_start();
-            ?>
 
-            <ol class="debug-tool-error-list">
+                $errors_str = '';
+                $srror_stat = array();
 
-                <?php
                 foreach ($this->errors as $error) {
 
                     switch ($error['type']) {
@@ -94,7 +93,9 @@ class Debug_Tool_Errors
                             $error_class = 'dt-undefined';
                             break;
                     }
-
+                    ob_start();
+                    if (isset($srror_stat[$type]))  $srror_stat[$type]++;
+                    else $srror_stat[$type] = 1;
                     ?>
                     <li class="debug-tool-error <?php echo $error_class; ?>">
                         <strong><?php echo $type . ': '; ?></strong>
@@ -103,8 +104,24 @@ class Debug_Tool_Errors
                         <em><?php echo $error['stack']; ?> </em>
                     </li>
                     <?php
-                } ?>
+                    $errors_str .= ob_get_clean();
+                }
 
+                ?>
+            <p>
+                <?php
+                $i = 0;
+                foreach ( $srror_stat as $type => $num ) {
+	                $i++;
+                    echo (($i !== 1) ? ' | ' : '' ) . $type . ': ' . $num;
+
+                }
+                ?>
+
+            </p>
+
+            <ol class="debug-tool-error-list">
+	        <?php echo $errors_str; ?>
             </ol>
 
             <?php
