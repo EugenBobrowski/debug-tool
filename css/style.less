@@ -342,17 +342,39 @@
     background: #cccccc;
     border: 1px solid #bbbbbb;
   }
+  .stacktrace {
+    list-style: none;
+    display: block;
+    margin: 2px 0;
+    li {
+      display: inline-block;
+      padding: 2px 4px;
+      font-style: italic;
+      margin: 2px;
+      border-radius: 2px;
+
+    }
+  }
+  .stacktrace-item(@color) {
+    .stacktrace {
+      li {
+        border: 1px solid @color;
+      }
+    }
+  }
   .dt-warning {
     @color: #ec971f;
     color: darken(@color, 20%);
     background: fade(@color, 30%);
     border-color: @color;
+    .stacktrace-item(@color);
   }
   .dt-notice {
     @color: #31b0d5;
     color: darken(@color, 20%);
     background: fade(@color, 30%);
     border-color: @color;
+    .stacktrace-item(@color);
 
   }
   .dt-undefined,
@@ -362,7 +384,10 @@
     color: darken(@color, 20%);
     background: fade(@color, 30%);
     border-color: @color;
+    .stacktrace-item(@color);
   }
+
+
 }
 
 .dbt-ref-table {

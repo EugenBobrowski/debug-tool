@@ -101,7 +101,13 @@ class Debug_Tool_Errors
                         <strong><?php echo $type . ': '; ?></strong>
                         <?php echo str_replace(ABSPATH, '', $error['location']) . ' - ' . strip_tags($error['message']); ?>
                         <br/>
-                        <em><?php echo $error['stack']; ?> </em>
+	                    <?php $stacktrace = explode(',', $error['stack']); ?>
+                        <ul class="stacktrace">
+                        <?php foreach ($stacktrace as $func) {
+                            ?><li><?php echo trim($func) ?></li><?php
+                        } ?>
+                        </ul>
+<!--                        <em><?php echo $error['stack']; ?></em>-->
                     </li>
                     <?php
                     $errors_str .= ob_get_clean();
