@@ -8,11 +8,24 @@
         debug.bar = $('#dbt-bar');
 
         debug.bar.on('click', 'a.dbt-toggle', debug.toggle);
+        debug.bar.on('click', 'a.toggle-wp-cache-cookie', debug.toggle_wp_debug);
 
         debug.$refs_content = debug.bar.find('.refs-content');
         debug.bar.on('click', '.refs a, .settings', debug.get_ref);
         debug.bar.on('change', '#dbt-settings input', debug.save_settings);
         debug.$refs_content.on('click', '.bg', debug.hide_ref);
+    };
+
+    debug.toggle_wp_debug = function (e) {
+        e.preventDefault();
+        var wp_debug = !$(this).hasClass('on');
+        console.log(wp_debug);
+        document.cookie = "dbt_wp_debug=" + ((wp_debug) ? 1 : 0) + "; path=/";
+        if (wp_debug) {
+            debug.bar.find('a.toggle-wp-cache-cookie').addClass('on');
+            alert('To use this switcher type in wp-config.php file something like this: define(\'WP_DEBUG\', (isset($_COOKIE[\'dbt_wp_debug\']) && $_COOKIE[\'dbt_wp_debug\']));')
+        }
+        else debug.bar.find('a.toggle-wp-cache-cookie').removeClass('on');
     };
 
     debug.toggle = function (e) {

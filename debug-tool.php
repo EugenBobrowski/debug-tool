@@ -179,13 +179,14 @@ class Debug_Tool
         if (isset ($_COOKIE['dbt_visible'])) $visible = $_COOKIE['dbt_visible'];
         else $visible = (current_user_can('manage_options') && !WP_DEBUG) || is_admin();
 
-
+var_dump(WP_DEBUG);
+	    var_dump($_COOKIE['dbt_wp_debug']);
 
         ?>
         <div id="dbt-container">
         <div id="dbt-bar" class="<?php echo (!$visible) ? 'dbt-hidden"' : ''; ?>">
 
-            <h3 class="title">Debug bar</h3>
+            <h3 class="title"><a href="#" class="toggle-wp-cache-cookie <?php echo (WP_DEBUG) ? 'on' : ''; ?>">Debug</a> bar</h3>
             <div class="main">
                 <p class="time"> <span><?php echo number_format($this->time, 3); ?>s</span>Imp. time   <span class="circle"></span></p>
                 <p class="queries"> <span><?php echo $wpdb->num_queries; ?></span> Queries<span class="circle"></span></p>

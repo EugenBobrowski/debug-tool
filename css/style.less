@@ -119,6 +119,13 @@
     text-transform: uppercase;
     padding: 4px;
     color: #ffffff;
+
+    .toggle-wp-cache-cookie {
+      color: fade(@color-2, 50%);
+      &.on {
+        color: @color-2;
+      }
+    }
   }
 
   p {
@@ -130,7 +137,7 @@
     float: right;
     text-align: right;
     margin: 0 0 70px 70px;
-    .time, .queries, .memory {
+    .time, .queries, .memory, .wp-dubug-coockie-toogles {
       position: relative;
       display: block;
       border: 1px solid lighten(@color-2, 0%);
