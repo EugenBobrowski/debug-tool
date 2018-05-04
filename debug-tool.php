@@ -140,8 +140,8 @@ class Debug_Tool
         $this->settings = apply_filters('dbt_settings', array());
 
         $option = get_option('dbt_settings', array());
-        foreach ($option as $key=>$value) {
-            $this->settings[$key]['value'] = $value;
+        foreach ($this->settings as $key=>$setting) {
+            $this->settings[$key]['value'] = $option[$key];
         }
 
     }
@@ -287,5 +287,6 @@ require_once 'tools/wp-cache.php';
 require_once 'tools/page-stat.php';
 require_once 'tools/cron-jobs.php';
 require_once 'tools/actions.php';
+require_once 'tools/phpinfo.php';
 
 add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);
