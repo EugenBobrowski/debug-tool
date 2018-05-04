@@ -141,6 +141,7 @@ class Debug_Tool
 
         $option = get_option('dbt_settings', array());
         foreach ($this->settings as $key=>$setting) {
+            if (!isset($option[$key])) continue;
             $this->settings[$key]['value'] = $option[$key];
         }
 
