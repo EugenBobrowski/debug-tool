@@ -1,5 +1,7 @@
 module.exports = function (grunt) {
     grunt.initConfig({
+        // Gets the package vars.
+        pkg: grunt.file.readJSON( 'package.json' ),
         less: {
             development: {
                 options: {
@@ -23,6 +25,18 @@ module.exports = function (grunt) {
                 ]
             }
         },
+
+        // Create README.md for GitHub.
+        wp_readme_to_markdown: {
+            options: {
+                screenshot_url: 'http://ps.w.org/<%= pkg.name %>/assets/{screenshot}.png'
+            },
+            dest: {
+                files: {
+                    'README.md': 'readme.txt'
+                }
+            }
+        },
         watch: {
             styles: {
                 files: ['**/*.less'], // which files to watch
@@ -36,6 +50,6 @@ module.exports = function (grunt) {
     // grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
-
+    grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
     grunt.registerTask('default', ['watch']);
 };
