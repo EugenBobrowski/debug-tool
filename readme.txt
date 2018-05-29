@@ -3,8 +3,8 @@ Contributors: eugenbobrowski
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UUWASQ4U7BNUE
 Tags: debug, debugger, developer, queries, wp debug, debug bar, for developers
 Requires at least: 4.0
-Tested up to: 4.7.3
-Stable tag: 1.2
+Tested up to: 4.9.6
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
