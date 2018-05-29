@@ -24,6 +24,9 @@ The debug bar is available on front side for everyone if WP_DEBUG is true. If yo
 * Queries list (sortable)
 * Memory counter
 * Segment checker
+* Cron jobs information
+* WP_Cache counter
+* phpinfo() window
 * References menu
 
 **Implementation time counter**
