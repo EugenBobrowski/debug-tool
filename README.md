@@ -14,7 +14,7 @@ Show helpful debug bar at front and admin side. Tool for developers.
 
 This is tool that help developers and administrators easier getting information.
 
-The debug bar is available on front side for everyone if WP_DEBUG is true. If you are admin you can call bar on any page by keys Ctrl+Alt+D.
+The debug bar is available on front side for everyone if WP_DEBUG is true. If you are admin you can open bar on any page. Hover the mouse cursor to bottom right corner and click on 
 
 
 ### Features: ###
@@ -106,11 +106,23 @@ Debug Tool is easy to install and configure.
 ### 3. Queries modal ###
 ![Queries modal](http://ps.w.org/debug-tool/assets/screenshot-3.png)
 
+### 4. Howto open and close bar ###
+![Howto open and close bar](http://ps.w.org/debug-tool/assets/screenshot-4.png)
+
 
 ## Changelog ##
 
+### 2.1 ###
+*Release Date - 23th May, 2018*
+
+* Remove hotkey combination
+* Add hidden button for open/close bar
+* Use coockies to save bar visible status
+* Add feature to define WP_DEBUG as  true via cookie
+* Add settings to switch features on/off
+
 ### 2.0 ###
-*Release Date - 18th March, 2017*
+*Release Date - 18th April, 2018*
 
 * Add page stat feature
 * Set new key combination to Ctrl+Alt+D

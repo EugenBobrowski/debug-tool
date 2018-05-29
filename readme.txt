@@ -111,6 +111,7 @@ Debug Tool is easy to install and configure.
 * Add hidden button for open/close bar
 * Use coockies to save bar visible status
 * Add feature to define WP_DEBUG as  true via cookie
+* Add settings to switch features on/off
 
 = 2.0 =
 *Release Date - 18th April, 2018*
