@@ -178,7 +178,7 @@ class Debug_Tool
         $this->get_settings();
 
         if (isset ($_COOKIE['dbt_visible'])) $visible = $_COOKIE['dbt_visible'];
-        else $visible = (current_user_can('manage_options') && !WP_DEBUG) || is_admin();
+        else $visible = false;
 
         ?>
         <div id="dbt-container">
