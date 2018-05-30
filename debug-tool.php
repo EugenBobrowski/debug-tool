@@ -5,7 +5,7 @@ Plugin URI: https://wordpress.org/plugins/debug-tool/
 Description: Show helpful debug bar at front and admin side. Tool for developers.
 Author: Eugen Bobrowski
 Git URI: https://github.com/EugenBobrowski/debug-tool
-Version: 2.1
+Version: 2.2
 */
 
 define('DBT_VERSION', '2.1');

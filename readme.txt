@@ -104,6 +104,11 @@ Debug Tool is easy to install and configure.
 
 == Changelog ==
 
+= 2.2 =
+*Release Date - 30th May, 2018*
+
+* Change visibility logic. Hide by default
+
 = 2.1 =
 *Release Date - 23th May, 2018*
 
