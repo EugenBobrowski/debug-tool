@@ -120,7 +120,10 @@ class Debug_Tool_Image_Puller {
 	public function ajax_pull() {
 
 		var_dump( $_POST );
+
 		$path = str_replace(get_site_url() . '/', ABSPATH, $_POST['missed']);
+		$path = explode('?', $path);
+		$path = $path[0];
 		var_dump($path);
 		file_put_contents($path, file_get_contents($_POST['source']));
 
