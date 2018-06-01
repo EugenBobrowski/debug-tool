@@ -240,15 +240,21 @@ class Debug_Tool
                 <div id="dbt-settings" class="ref-item">
                     <h3><?php _e('Debug Tool Settings'); ?></h3>
                     <form action="#">
-                        <?php foreach ($this->settings as $setting=>$setting_details) { ?>
+	                    <?php foreach ( $this->settings as $setting => $setting_details ) { ?>
                             <div class="setting-item">
                                 <label for="<?php echo $setting; ?>"><?php echo $setting_details['label']; ?></label>
-                                <input id="<?php echo $setting; ?>" type="checkbox" value="1" <?php checked($setting_details['value']); ?> >
+			                    <?php if ( !isset($setting_details['type']) ) { ?>
+                                <input id="<?php echo $setting; ?>" type="checkbox"
+                                       value="1" <?php checked( $setting_details['value'] ); ?> >
                                 <label class="tumbler" for="<?php echo $setting; ?>">
                                 </label>
+	                            <?php } elseif( $setting_details['type'] == 'text' ) { ?>
+                                    <input id="<?php echo $setting; ?>" type="text"
+                                           value="<?php echo $setting_details['value'] ; ?>"  >
+	                            <?php } ?>
                                 <div style="clear: both;"></div>
                             </div>
-                        <?php } ?>
+	                    <?php } ?>
                     </form>
                 </div>
             </div>
@@ -289,5 +295,6 @@ require_once 'tools/page-stat.php';
 require_once 'tools/cron-jobs.php';
 require_once 'tools/actions.php';
 require_once 'tools/phpinfo.php';
+require_once 'tools/image-puller.php';
 
 add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);

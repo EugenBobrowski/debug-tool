@@ -57,6 +57,8 @@
 
         if ($this.attr('type') === 'checkbox') {
             val = ($this.prop('checked')) ? 1 : 0;
+        } else {
+            val = $this.val();
         }
 
         $.post(debug.ajax_url, {
