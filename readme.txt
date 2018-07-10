@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: debug, debugger, developer, queries, wp debug, debug bar, for developers
 Requires at least: 4.0
 Tested up to: 4.9.6
-Stable tag: 2.1
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,7 @@ The debug bar is available on front side for everyone if WP_DEBUG is true. If yo
 * WP_Cache counter
 * phpinfo() window
 * References menu
+* Image Puller that provide pull missed images from production to develop site
 
 **Implementation time counter**
 
@@ -108,6 +109,7 @@ Debug Tool is easy to install and configure.
 *Release Date - 30th May, 2018*
 
 * Change visibility logic. Hide by default
+* Add new tool Image Puller that provide pull missed images from production to develop site.
 
 = 2.1 =
 *Release Date - 23th May, 2018*

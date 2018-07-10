@@ -8,7 +8,7 @@ Git URI: https://github.com/EugenBobrowski/debug-tool
 Version: 2.2
 */
 
-define('DBT_VERSION', '2.1');
+define('DBT_VERSION', '2.2');
 define('DBT_ROOT_URI', plugin_dir_url(__FILE__));
 
 class Debug_Tool
