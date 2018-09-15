@@ -295,6 +295,7 @@ require_once 'tools/page-stat.php';
 require_once 'tools/cron-jobs.php';
 require_once 'tools/actions.php';
 require_once 'tools/phpinfo.php';
+require_once 'tools/var_dump.php';
 require_once 'tools/image-puller.php';
 
 add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);
