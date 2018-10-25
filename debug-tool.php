@@ -114,6 +114,10 @@ class Debug_Tool
 
     }
 
+    public function get_segment_data($segment) {
+        return $this->data[$segment];
+    }
+
     public function start()
     {
         $this->start = $this->microtime_float();
