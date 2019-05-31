@@ -133,6 +133,13 @@ class Debug_Tool_Image_Puller {
 		if (file_exists($path)) {
 			unlink($path);
 		}
+
+		var_dump($path);
+		var_dump(wp_mkdir_p( dirname( $path ) ));
+		if (file_exists($path)) {
+			unlink($path);
+		}
+
 		file_put_contents($path, file_get_contents($_POST['source']));
 
 
