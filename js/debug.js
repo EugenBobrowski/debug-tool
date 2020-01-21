@@ -13,6 +13,7 @@
         debug.$refs_content = debug.bar.find('.refs-content');
         debug.bar.on('click', '.refs a, .settings', debug.get_ref);
         debug.bar.on('change', '#dbt-settings input', debug.save_settings);
+        debug.bar.on('submit', '#dbt-settings form', debug.save_settings);
         debug.$refs_content.on('click', '.bg', debug.hide_ref);
     };
 
