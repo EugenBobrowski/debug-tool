@@ -132,7 +132,7 @@ class Debug_Tool
     public function assets()
     {
         wp_enqueue_style('wp-dbt', plugin_dir_url(__FILE__) . 'css/style.css', array(), DBT_VERSION, 'screen');
-        wp_enqueue_script('wp-dbt', plugin_dir_url(__FILE__) . 'js/debug.js', array(), DBT_VERSION, true);
+        wp_enqueue_script('wp-dbt', plugin_dir_url(__FILE__) . 'js/debug.js', array('jquery'), DBT_VERSION, true);
         wp_localize_script('wp-dbt', 'dbt_object', array(
                 'ajax_url' => admin_url('admin-ajax.php'
                 )));
