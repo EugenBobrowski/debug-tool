@@ -41,9 +41,9 @@ class Debug_Tool_Plugin_Disactivator {
 		?>
         <form id="dbt_disactive_plugins_form" action="">
             <input type="hidden" name="action" value="dbt_plugins_disactive">
-            <ul class="dbt-plugins-list">
+            <ol class="dbt-plugins-list">
 				<?php $this->plugins_list(); ?>
-            </ul>
+            </ol>
             <button id="dbt_plugin_disactive">Set active</button>
         </form>
 
