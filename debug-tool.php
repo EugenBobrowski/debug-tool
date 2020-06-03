@@ -8,7 +8,7 @@ Git URI: https://github.com/EugenBobrowski/debug-tool
 Version: 2.2
 */
 
-define('DBT_VERSION', '2.1');
+define('DBT_VERSION', '2.2');
 define('DBT_ROOT_URI', plugin_dir_url(__FILE__));
 
 class Debug_Tool
@@ -114,6 +114,10 @@ class Debug_Tool
 
     }
 
+    public function get_segment_data($segment) {
+        return $this->data[$segment];
+    }
+
     public function start()
     {
         $this->start = $this->microtime_float();
@@ -128,7 +132,7 @@ class Debug_Tool
     public function assets()
     {
         wp_enqueue_style('wp-dbt', plugin_dir_url(__FILE__) . 'css/style.css', array(), DBT_VERSION, 'screen');
-        wp_enqueue_script('wp-dbt', plugin_dir_url(__FILE__) . 'js/debug.js', array(), DBT_VERSION, true);
+        wp_enqueue_script('wp-dbt', plugin_dir_url(__FILE__) . 'js/debug.js', array('jquery'), DBT_VERSION, true);
         wp_localize_script('wp-dbt', 'dbt_object', array(
                 'ajax_url' => admin_url('admin-ajax.php'
                 )));
@@ -295,6 +299,7 @@ require_once 'tools/page-stat.php';
 require_once 'tools/cron-jobs.php';
 require_once 'tools/actions.php';
 require_once 'tools/phpinfo.php';
+require_once 'tools/var_dump.php';
 require_once 'tools/image-puller.php';
 require_once 'tools/plugin-disactivator.php';
 

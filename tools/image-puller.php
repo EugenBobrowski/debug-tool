@@ -77,6 +77,11 @@ class Debug_Tool_Image_Puller {
                             statusCode: {
                                 404: function () {
                                     _.$.list.append('<li data-missed="' + url + '" data-source="' + url.replace(_.sets.loc, _.sets.prod) + '"><img src="' + url.replace(_.sets.loc, _.sets.prod) + '" alt="">' + url + '</li>');
+                                },
+                                200: function (img) {
+                                    if (!img) {
+                                        _.$.list.append('<li data-missed="' + url + '" data-source="' + url.replace(_.sets.loc, _.sets.prod) + '"><img src="' + url.replace(_.sets.loc, _.sets.prod) + '" alt="">' + url + '</li>');
+                                    }
                                 }
                             }
                         });
@@ -124,7 +129,17 @@ class Debug_Tool_Image_Puller {
 		$path = str_replace(get_site_url() . '/', ABSPATH, $_POST['missed']);
 		$path = explode('?', $path);
 		$path = $path[0];
+
+		if (file_exists($path)) {
+			unlink($path);
+		}
+
 		var_dump($path);
+		var_dump(wp_mkdir_p( dirname( $path ) ));
+		if (file_exists($path)) {
+			unlink($path);
+		}
+
 		file_put_contents($path, file_get_contents($_POST['source']));
 
 
