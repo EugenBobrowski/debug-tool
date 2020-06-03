@@ -296,5 +296,6 @@ require_once 'tools/cron-jobs.php';
 require_once 'tools/actions.php';
 require_once 'tools/phpinfo.php';
 require_once 'tools/image-puller.php';
+require_once 'tools/plugin-disactivator.php';
 
 add_action('plugins_loaded', array('Debug_Tool', 'get_instance'), 1);
