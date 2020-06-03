@@ -45,6 +45,8 @@ class Debug_Tool_Plugin_Disactivator {
 				<?php $this->plugins_list(); ?>
             </ol>
             <button id="dbt_plugin_disactive">Set active</button>
+            <a href="#" class="check-all">Check All</a>
+            <a href="#" class="uncheck-all">Uncheck All</a>
         </form>
 
 
@@ -67,6 +69,8 @@ class Debug_Tool_Plugin_Disactivator {
                         list: $('.images-list')
                     };
                     _.$.form.submit(_.disactive);
+                    _.$.form.on('click', '.check-all', _.check_all);
+                    _.$.form.on('click', '.uncheck-all', _.uncheck_all);
 
                 };
 
@@ -74,14 +78,19 @@ class Debug_Tool_Plugin_Disactivator {
                     e.preventDefault();
 
                     $.post(_.sets.ajax, $(this).serialize(), function (response) {
-                        console.log(response);
+                        console.log($(this).find('.dbt-plugins-list'));
                         $(this).find('.dbt-plugins-list').html(response);
                     });
                 };
 
-                _.pull_all = function (e) {
+                _.check_all = function (e) {
                     e.preventDefault();
-                    _.pull(_.$.list.find('li:first'));
+                    console.log(_.$.form.find('input[type="checkbox"]'));
+                    _.$.form.find('input[name="plugins[]"]').prop('checked', true);
+                };
+                _.uncheck_all = function (e) {
+                    e.preventDefault();
+                    _.$.form.find('input[type="checkbox"]').prop('checked', false);
                 };
                 _.pull = function ($item) {
 
@@ -114,9 +123,9 @@ class Debug_Tool_Plugin_Disactivator {
 		foreach ( $native_active_plugins as $slug ) {
 			?>
             <li>
-                <labe><input name="plugins[]" type="checkbox"
+                <label><input name="plugins[]" type="checkbox"
                              value="<?php echo $slug; ?>" <?php checked( in_array( $slug, $active_plugins ) ); ?> > <?php echo $slug; ?>
-                </labe>
+                </label>
             </li>
 			<?php
 		} ?>
@@ -135,15 +144,21 @@ class Debug_Tool_Plugin_Disactivator {
 
 		$new = $_POST['plugins'];
 
+		if (!empty($_POST['activate']) && $_POST['activate'] == 'all' ) {
+		    $new = $native_active_plugins;
+        }
+
 		if ( empty( $native_active_plugins ) ) {
 			update_option( 'dbt_native_active_plugins', $active_plugins );
 		}
 
-		if ( $new == $native_active_plugins ) {
+		if ( count(array_diff($native_active_plugins, $new )) == 0 ) {
 			delete_option( 'dbt_native_active_plugins' );
-		} else {
-			update_option( 'active_plugins', $new );
 		}
+
+		update_option( 'active_plugins', $new );
+
+		$this->plugins_list();
 
 		exit();
 
